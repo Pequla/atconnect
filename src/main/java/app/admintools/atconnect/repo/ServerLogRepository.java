@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface ServerLogRepository extends JpaRepository<ServerLog, Long> {
 
-    List<ServerLog> findTop100ByServer(RemoteServer server);
+    List<ServerLog> findTop100ByServerOrderByCreatedAtDesc(RemoteServer server);
 
     List<ServerLog> findAllByServerAndIdGreaterThan(RemoteServer server, Long id);
 }

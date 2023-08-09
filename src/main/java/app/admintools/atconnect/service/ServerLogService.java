@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -19,7 +20,11 @@ public class ServerLogService {
 
     public List<ServerLog> getAllLogs(String uuid, Long id) {
         RemoteServer server = service.retrieveByUUID(uuid);
-        if (id == null) return repository.findTop100ByServer(server);
+        if (id == null) {
+            List<ServerLog> result = repository.findTop100ByServerOrderByCreatedAtDesc(server);
+            Collections.reverse(result);
+            return result;
+        }
         return repository.findAllByServerAndIdGreaterThan(server, id);
     }
 

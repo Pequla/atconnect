@@ -54,3 +54,12 @@ Example usage: `/api/command/ce75983a-54fe-49e5-a738-eda6ea1f6473`
     "value": "gamemode ProNoob2016 survival"
 }
 ```
+
+### `GET /api/heartbeat/{uuid}`
+> Retrieve server's online status. If the server hasn't requested any new commands from `GET /api/command/{uuid}` for over 30 seconds it will be considered offline
+```json
+{
+    "uuid": "ce75983a-54fe-49e5-a738-eda6ea1f6473",
+    "online": true
+}
+```
