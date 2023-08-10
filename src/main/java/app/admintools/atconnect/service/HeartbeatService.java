@@ -33,11 +33,12 @@ public class HeartbeatService {
 
     public HeartbeatModel getServerHeartbeat(String uuid) {
         RemoteServer server = service.retrieveByUUID(uuid);
-        LocalDateTime plusSeconds = LocalDateTime.now().plusSeconds(30);
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime minusSeconds = now.minusSeconds(12);
 
         HeartbeatModel model = new HeartbeatModel();
         model.setUuid(server.getUuid());
-        model.setOnline(repository.existsByCreatedAtBefore(plusSeconds));
+        model.setOnline(repository.existsByServerAndCreatedAtBetween(server, minusSeconds, now));
         return model;
     }
 }
