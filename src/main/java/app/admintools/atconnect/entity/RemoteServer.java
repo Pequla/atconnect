@@ -23,5 +23,11 @@ public class RemoteServer {
     private String uuid;
 
     @Column(nullable = false)
+    private String address;
+
+    @Column(nullable = false)
     private LocalDateTime createdAt;
+
+    @Column(nullable = false)
+    private LocalDateTime heartbeatAt;
 }
